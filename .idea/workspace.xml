@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1fd6a6b2-b1be-493f-8b47-0d7e1dceea7f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/django_study/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_study/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +76,7 @@
       <updated>1652192048774</updated>
       <workItem from="1652192059761" duration="43000" />
       <workItem from="1652526780814" duration="14000" />
-      <workItem from="1652526795591" duration="3378000" />
+      <workItem from="1652526795591" duration="4574000" />
     </task>
     <servers />
   </component>
