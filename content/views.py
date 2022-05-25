@@ -53,4 +53,13 @@ class UploadFeed(APIView):
 
 class Profile(APIView):
     def get(self, request):
-        return render(request, 'django_study/profile.html')
+
+        email = request.session.get('email', None)
+        user = User.objects.filter(email=email).first()
+
+        if email is None:
+            return render(request, 'user/login.html')
+        if user is None:
+            return render(request, 'user/login.html')
+
+        return render(request, 'content/profile.html', context=dict(user=user))
