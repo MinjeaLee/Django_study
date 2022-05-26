@@ -137,3 +137,5 @@ MEDIA_URL = '/media/' # 항상 / 로 끝나도록 설정
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'user.User'
+
+ALLOWED_HOSTS = ['192.168.0.71']
