@@ -5,30 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1fd6a6b2-b1be-493f-8b47-0d7e1dceea7f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/content/migrations/0002_remove_feed_profile_image_remove_feed_user_id_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/08fabc26b6324e5d8c659374e6e67559" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/3bb59b6c4a0845f6aa0348eb98ca0915" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/4031410252fd45ab8af499e3db35d3e6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/4b36b1a413514601b790512cd879f3ef" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/52ebb5dde1774691af3fdc09aec5301a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/5970b02d85364c44ab85b1bf85ca1d0b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/60a0a56515684f448e3722bc05bdc846" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/9405a3cd68a54ba99d85fe5056ee3b96" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/b556f5a696164c8aa1d02122907eeab4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/c33d87bf4ac74f7a87f7d3807614e096" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/dd99c722b19f4896b828f27f5d214d8e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/e94d3b1764884d2cb56b0b860cf56b98" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/ecc1d2596e6e4a7a865a6e444e85840e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/f3a3b28dc1604dc2825793da73b3a14a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/f6ae46a9b05e454a91b89f64a2c0b5c8" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/f7836e1c3d9e41b99e1f10b875a92b30" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/faa5d799fdeb43dcb31c619ca4665847" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c9757c6e-902b-41d3-8ac2-83706bd113ed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c9757c6e-902b-41d3-8ac2-83706bd113ed.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/django_study/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/django_study/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/content/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/content/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/django_study/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/django_study/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +86,7 @@
       <updated>1652192048774</updated>
       <workItem from="1652192059761" duration="43000" />
       <workItem from="1652526780814" duration="14000" />
-      <workItem from="1652526795591" duration="21158000" />
+      <workItem from="1652526795591" duration="23785000" />
     </task>
     <servers />
   </component>

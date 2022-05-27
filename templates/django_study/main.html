@@ -149,11 +149,20 @@
                 <div style="text-align : left; font-size : 15px; margin: 0 20px;">
                     <b>{{feed.user_id}}</b> {{ feed.content}}
                 </div>
-                <div style="text-align : left; font-size : 14px; margin: 0 20px;"><b>given_sik</b> 어쩔티비</div>
-                <div style="text-align : left; font-size : 14px; margin: 0 20px;"><b>castle_woo0612</b> ㅋㅎㅋㅎㅋㅎㅋㅎㅋ✨</div>
-                <div style="border-top: 1px solid rgb(239, 239, 239);">
-                    <input type="text" class="form-control" style="box-shadow: none; border : none; outline : none;"
+
+                <div id = "reply_list_{{feed.id}}">
+                    {% for reply in feed.reply_list %}
+                    <div style="text-align : left; font-size : 14px; margin: 0 20px;"><b>{{reply.user_id}}</b> {{reply.reply_content}} </div>
+                    {% endfor %}
+                </div>
+
+                <div style="display:flex; flex-direction:row; border-top: 1px solid rgb(239, 239, 239); align-items: center;">
+                    <input id="reply_{{feed.id}}" type="text" class="form-control" style="box-shadow: none; border : none; outline : none;"
                         id="" placeholder="댓글달기...">
+
+                        <div feed_id ="{{feed.id}}" class="upload_reply" style="width:50px; color:rgb(65, 147, 239)"> 
+                            게시
+                        </div>
                 </div>
             </div>
             {% endfor %}
@@ -343,6 +352,42 @@
     <!-- main content end -->
 
     <script>
+        $(".upload_reply").click(function (e) {
+            let feed_id = e.target.attributes.getNamedItem("feed_id").value;
+            let reply_id = "reply_" + feed_id;
+            
+            let reply_content = $("#" + reply_id).val();
+
+            if(reply_content.length == 0){
+                alert("댓글을 입력해주세요");
+                return;
+            }
+
+            $.ajax({
+                url: '/content/reply',
+                method: 'POST',
+                data: {
+                    feed_id: feed_id,
+                    reply_content: reply_content
+                },
+                success: function (data) {
+                    console.log(data);
+                    alert('성공');
+                    $("#reply_list_"+feed_id).append("<div style='text-align : left; font-size : 14px; margin: 0 20px;'><b>{{ user.user_id}}</b> "+reply_content+"</div>");
+                    // location.replace('/main');
+                },
+                error: function (data) {
+                    console.log(data);
+                    alert('실패');
+                },
+                complete: function (data) {
+                    $("#" + reply_id).val("");
+                }
+            });
+
+        });
+            
+
         $(".modal_close").click(function () {
             $("#first_modal").css("display", "none");
             $("#second_modal").css("display", "none");
@@ -364,8 +409,6 @@
             let file = files[0];
             let image = files[0].name;
             let content = $("#input_feed_content").val();
-            let user_id = "{{user.user_id}}";
-            let profile_image = "{{user.profile_image}}";
             let like_count = 0;
 
             // fd
@@ -373,8 +416,6 @@
             fd.append("file", file);
             fd.append("image", image);
             fd.append("content", content);
-            fd.append("user_id", user_id);
-            fd.append("profile_image", profile_image);
             fd.append("like_count", like_count);
 
 
