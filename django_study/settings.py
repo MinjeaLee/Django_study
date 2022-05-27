@@ -138,4 +138,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'user.User'
 
-# ALLOWED_HOSTS = ['192.168.0.71']
+# ALLOWED_HOSTS = ['192.168.0.11']

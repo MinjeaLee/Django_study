@@ -87,7 +87,7 @@
                 <a href="/main" style="color:black;">
                     <span class="material-icons" style="padding-right: 10px;">home</span>
                 </a>
-                <span id="nav_bar_add_box" class="material-icons-outlined" style="padding-right: 10px;">add_box</span>
+                <span id="nav_bar_add_box" class="material-icons-outlined" style="padding-right: 10px; cursor: pointer;">add_box</span>
                 <div class="dropdown">
                     <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -127,19 +127,27 @@
                     </div>
                 </div>
 
-                <div>
+                <div style="margin-bottom: 8px;">
                     <img style="width: 100%; height: 400px; object-fit: cover;"
                         src="{% get_media_prefix %}{{ feed.image }}">
                 </div>
                 <div style="display: flex; flex-direction : row; justify-content : space-between; margin: 0 20px;">
                     <div>
-                        <span class="material-icons-outlined">favorite_border</span>
-                        <span class="material-icons-outlined">mode_comment</span>
-                        <span class="material-icons-outlined">send</span>
+                        <span id="favorite_{{ feed.id }}" feed_id="{{ feed.id }}" class="favorite material-icons-outlined" style="cursor: pointer;
+                        {% if feed.is_liked %}
+                            color: rgb(219,86,91)";>favorite
+                        {% else %}
+                            ">favorite_border
+                        {% endif %}
+                        </span>
                     </div>
                     <div>
-                        <span class="material-icons-outlined">
-                            bookmark_border
+                        <span id = "bookmark_{{ feed.id }}" feed_id="{{ feed.id }}"class="bookmark material-icons-outlined" style="cursor: pointer;">
+                            {%if feed.is_marked %}
+                                bookmark
+                            {% else %}
+                                bookmark_border
+                            {% endif %}
                         </span>
                     </div>
                 </div>
@@ -295,11 +303,11 @@
     <div id="first_modal" class="modal_overlay">
         <div class="modal_window">
             <div style=" display: flex; flex-direction: row; justify-content: space-between;">
-                <div style="width:40px; background-color:gray">
+                <div style="width:40px;">
                     <!-- blank space to space between-->
                 </div>
                 <div>새 이미지 업로드</div>
-                <div style="width: 40px; background-color:gray">
+                <div style="width: 40px;">
                     <span class="modal_close material-icons-outlined">
                         close
                     </span>
@@ -317,11 +325,11 @@
     <div id="second_modal" class="modal_overlay">
         <div class="modal_window">
             <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                <div style="width:40px; background-color:gray">
+                <div style="width:40px;">
                     <!-- blank space to space between-->
                 </div>
                 <div>새 이미지 업로드</div>
-                <div style="width: 40px; background-color:gray">
+                <div style="width: 40px;">
                     <span class="modal_close material-icons-outlined">
                         close
                     </span>
@@ -352,6 +360,80 @@
     <!-- main content end -->
 
     <script>
+        $(".bookmark").click(function (e) {
+            let bookmark_id = e.target.id;
+            let bookmark_status = $.trim($("#" + bookmark_id).html())
+            let feed_id = e.target.attributes.getNamedItem("feed_id").value;
+
+            if(bookmark_status == "bookmark"){
+                $("#" + bookmark_id).html("bookmark_border");
+            }
+            else{
+                $("#" + bookmark_id).html("bookmark");
+            }
+
+            $.ajax({
+                url: '/content/bookmark',
+                method: 'POST',
+                data: {
+                    feed_id: feed_id,
+                    bookmark_status: bookmark_status
+                },
+                success: function (data) {
+                    console.log(data);
+                    alert('성공');
+                },
+                error: function (data) {
+                    console.log(data);
+                    alert('실패');
+                },
+                complete: function (data) {
+
+                }
+
+            });
+
+
+
+        });
+
+        $(".favorite").click(function(e) {
+            let favorite_id = e.target.id;
+            let favorite_status = $.trim($("#"+favorite_id).html());
+            let feed_id = e.target.attributes.getNamedItem("feed_id").value;
+
+            if(favorite_status == "favorite"){
+                $("#"+favorite_id).html("favorite_border");
+                $("#"+favorite_id).css("color","black");
+            }
+            else{
+                $("#"+favorite_id).html("favorite");
+                $("#"+favorite_id).css("color","rgb(219, 86, 91");
+            }
+
+            $.ajax({
+                url: '/content/like',
+                method: 'POST',
+                data: {
+                    feed_id: feed_id,
+                    favorite_status: favorite_status
+                },
+                success: function (data) {
+                    console.log(data);
+                    alert('성공');
+                },
+                error: function (data) {
+                    console.log(data);
+                    alert('실패');
+                },
+                complete: function (data) {
+
+                }
+
+            });
+
+        });
+
         $(".upload_reply").click(function (e) {
             let feed_id = e.target.attributes.getNamedItem("feed_id").value;
             let reply_id = "reply_" + feed_id;
@@ -409,14 +491,12 @@
             let file = files[0];
             let image = files[0].name;
             let content = $("#input_feed_content").val();
-            let like_count = 0;
 
             // fd
             let fd = new FormData();
             fd.append("file", file);
             fd.append("image", image);
             fd.append("content", content);
-            fd.append("like_count", like_count);
 
 
 
